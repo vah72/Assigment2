@@ -1,0 +1,28 @@
+<section class="container">
+  {% for list in lists %}
+  <div class="box">
+    <div class="columns">
+      <div class="column is-1 has-background-info">
+        <span class="subtitle level-item has-text-centered is-2 h-100">{{list.id}}</span>
+      </div>
+      <div class="column is-9 has-background-light">
+        <div class="tags has-addons">
+          <span class="tag is-warning is-medium title is-5">Created</span>
+          <span class="tag is-danger is-medium">{{ list.created }}</span>
+        </div>
+        <p class="has-text-justified">{{ list.content }}</p>
+      </div>
+      <div class="column is-2">
+        <div class="level h-100">
+          <form action="/deletelist/{{list.id}}/" method="post">
+            {% csrf_token%}
+            <button class="button is-danger is-fullwidth" type="submit">
+              <i class="fas fa-trash-alt"></i>
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</section>
